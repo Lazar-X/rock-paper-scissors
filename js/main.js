@@ -3,7 +3,8 @@ window.onload = function() {
     console.log("connected");
 
     // computerPlay();
-    playerPlay();
+    // playerPlay();
+    playRound(playerPlay(), computerPlay());
 }
 
 function computerPlay() {
@@ -25,7 +26,9 @@ function computerPlay() {
         default: computerChoice = "Impossible!";
     }
 
-    console.log(computerChoice);
+    // console.log("Computer choosed " + computerChoice);
+
+    return computerChoice;
 }
 
 function playerPlay() {
@@ -35,21 +38,43 @@ function playerPlay() {
     let playerChoiceNew = playerChoice.charAt(0).toUpperCase() + playerChoice.substring(1, playerChoice.indexOf(" ") + 1);
     playerChoiceNew = playerChoiceNew.trim();
 
-    console.log(playerChoiceNew);
+    // console.log(playerChoiceNew);
 
     if((playerChoiceNew !== "Rock") && (playerChoiceNew !== "Paper") && (playerChoiceNew !== "Scissors")) {
         console.log("Remember you can choose rock, paper or scissors only!");
     }
 
-    else {
-        console.log("You choosed " + playerChoiceNew);
-    }
+    // else {
+    //     console.log("You choosed " + playerChoiceNew);
+    // }
+
+    return playerChoiceNew;
 }
 
 function playRound(playerSelection, computerSelection) {
 
-    if(playerSelection == computerSelection) {
+    console.log(`You choosed ${playerSelection}. Computer choosed ${computerSelection}.`);
 
+    if(playerSelection == computerSelection) {
+        console.log(`Draw! ${playerSelection} cant beat ${computerSelection}.`);
+    }
+    if(playerSelection == "Rock" && computerSelection == "Paper") {
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    }
+    if(playerSelection == "Rock" && computerSelection == "Scissors") {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+    }
+    if(playerSelection == "Paper" && computerSelection == "Rock") {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+    }
+    if(playerSelection == "Paper" && computerSelection == "Scissors") {
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    }
+    if(playerSelection == "Scissors" && computerSelection == "Rock") {
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    }
+    if(playerSelection == "Scsissors" && computerSelection == "Paper") {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
     }
 
 }
