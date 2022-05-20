@@ -2,9 +2,7 @@ window.onload = function() {
 
     console.log("connected");
 
-    // computerPlay();
-    // playerPlay();
-    playRound(playerPlay(), computerPlay());
+    game();
 }
 
 function computerPlay() {
@@ -57,6 +55,7 @@ function playRound(playerSelection, computerSelection) {
 
     if(playerSelection == computerSelection) {
         console.log(`Draw! ${playerSelection} cant beat ${computerSelection}.`);
+        
     }
     if(playerSelection == "Rock" && computerSelection == "Paper") {
         console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
@@ -75,6 +74,19 @@ function playRound(playerSelection, computerSelection) {
     }
     if(playerSelection == "Scsissors" && computerSelection == "Paper") {
         console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+    }
+
+}
+
+function game() {
+
+    let playerScore;
+    let computerScore;
+
+    for(let i = 0; i < 5; i++) {
+        let playerSelection = playerPlay();
+        let computerSelection = computerPlay();
+        playRound(playerSelection, computerSelection);
     }
 
 }
