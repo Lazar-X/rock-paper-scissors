@@ -52,9 +52,11 @@ let playerScore = 0;
 let computerScore = 0;
 let winnerScore = 5;
 
-function playRound(playerSelection, computerSelection) {
+let finalDiv = document.querySelector("#final");
+let mainDiv = document.querySelector("#main");
+finalDiv.setAttribute("style", "display: none;");
 
-    let winner = "";
+function playRound(playerSelection, computerSelection) {
     
     printMessage(choosedMessageElement, `You choosed ${playerSelection}. Computer choosed ${computerSelection}.`);
 
@@ -63,47 +65,45 @@ function playRound(playerSelection, computerSelection) {
         printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Rock" && computerSelection == "Paper") {
-        winner = "computer";
         computerScore++;
         printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
         printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Rock" && computerSelection == "Scissors") {
-        winner = "player";
         playerScore++;
         printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
         printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Paper" && computerSelection == "Rock") {
-        winner = "player";
         playerScore++;
         printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
         printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Paper" && computerSelection == "Scissors") {
-        winner = "computer";
         computerScore++;
         printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
         printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Scissors" && computerSelection == "Rock") {
-        winner = "computer";
         computerScore++;
         printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
         printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Scissors" && computerSelection == "Paper") {
-        winner = "player";
         playerScore++;
         printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
         printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
 
     if(playerScore == winnerScore) {
+        mainDiv.setAttribute("style", "display: none;");
+        finalDiv.setAttribute("style", "display: flex;");
         printMessage(finalMessageElement, "You are the winner! Congratulations.");
     }
     if(computerScore == winnerScore) {
         printMessage(finalMessageElement, "You lost. Better luck next time.");
+        mainDiv.setAttribute("style", "display: none;");
+        finalDiv.setAttribute("style", "display: flex;");
     }
 
 }
