@@ -2,30 +2,36 @@ window.onload = function() {
 
     console.log("connected");
 
-    game();
-
     let rockButton = document.querySelector("#rock");
     let paperButton = document.querySelector("#paper");
     let scissorsButton = document.querySelector("#scissors");
 
     rockButton.addEventListener("click", () => {
-        playerPlay("Rock");
+        playRound("Rock", computerPlay());
     });
     paperButton.addEventListener("click", () => {
-        playerPlay("Paper");
+        playRound("Paper", computerPlay());
     });
     scissorsButton.addEventListener("click", () => {
-        playerPlay("Scissors");
+        playRound("Scissors", computerPlay());
     });
 
+}
+
+let resultDiv = document.querySelector("#result");
+let choosedMessageElement = document.querySelector("#choosedMessage");
+let winnerMessageElement = document.querySelector("#winnerMessage");
+let resultMessageElement = document.querySelector("#resultMessage");
+let finalMessageElement = document.querySelector("#finalMessage");
+
+function printMessage(element, message) {
+    element.textContent = message;
 }
 
 function computerPlay() {
 
     let number = Math.random();
-    // console.log(number);
     let roundedNumber = Math.floor(number * 3) + 1;
-    // console.log(roundedNumber);
 
     let computerChoice;
 
@@ -39,32 +45,8 @@ function computerPlay() {
         default: computerChoice = "Impossible!";
     }
 
-    // console.log("Computer choosed " + computerChoice);
-
     return computerChoice;
-}
 
-function playerPlay(playerChoice) {
-    
-    if(playerChoice == "Rock") {
-        console.log("ROCK");
-    }
-    if(playerChoice == "Paper") {
-        console.log("PAPER");
-    }
-    if(playerChoice == "Scissors") {
-        console.log("SCISSORS");
-    }
-
-    if((playerChoice !== "Rock") && (playerChoice !== "Paper") && (playerChoice !== "Scissors")) {
-        console.log("Remember you can choose rock, paper or scissors only!");
-    }
-
-    // else {
-    //     console.log("You choosed " + playerChoiceNew);
-    // }
-
-    return playerChoice;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -73,32 +55,48 @@ function playRound(playerSelection, computerSelection) {
 
     console.log(`You choosed ${playerSelection}. Computer choosed ${computerSelection}.`);
 
+    printMessage(choosedMessageElement, `You choosed ${playerSelection}. Computer choosed ${computerSelection}.`);
+
     if(playerSelection == computerSelection) {
         console.log(`Draw! ${playerSelection} cant beat ${computerSelection}.`);
+
+        printMessage(winnerMessageElement, `Draw! ${playerSelection} cant beat ${computerSelection}.`);
     }
     if(playerSelection == "Rock" && computerSelection == "Paper") {
         console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
         winner = "computer";
+
+        printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
     }
     if(playerSelection == "Rock" && computerSelection == "Scissors") {
         console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
         winner = "player";
+
+        printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
     }
     if(playerSelection == "Paper" && computerSelection == "Rock") {
         console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
         winner = "player";
+
+        printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
     }
     if(playerSelection == "Paper" && computerSelection == "Scissors") {
         console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
         winner = "computer";
+
+        printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
     }
     if(playerSelection == "Scissors" && computerSelection == "Rock") {
         console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
         winner = "computer";
+
+        printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
     }
-    if(playerSelection == "Scsissors" && computerSelection == "Paper") {
+    if(playerSelection == "Scissors" && computerSelection == "Paper") {
         console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
         winner = "player";
+
+        printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
     }
 
     return winner;
@@ -107,9 +105,11 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
+    let winnerScore = 5;
     let playerScore = 0;
     let computerScore = 0;
 
+    for(let i = 0; i < 5; i++) {
         let playerSelection = playerPlay();
         let computerSelection = computerPlay();
 
@@ -119,6 +119,8 @@ function game() {
         if(winner == "computer") computerScore++;
 
         console.log(`Player ${playerScore} - ${computerScore} Computer`);
+    }
+    
 
     if(playerScore == computerScore) console.log("Draw. Maybe you should try again.")
     if(playerScore > computerScore) console.log("You are the winner! Congratulations.");
