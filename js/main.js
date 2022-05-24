@@ -18,7 +18,6 @@ window.onload = function() {
 
 }
 
-let resultDiv = document.querySelector("#result");
 let choosedMessageElement = document.querySelector("#choosedMessage");
 let winnerMessageElement = document.querySelector("#winnerMessage");
 let resultMessageElement = document.querySelector("#resultMessage");
@@ -49,81 +48,62 @@ function computerPlay() {
 
 }
 
+let playerScore = 0;
+let computerScore = 0;
+let winnerScore = 5;
+
 function playRound(playerSelection, computerSelection) {
 
     let winner = "";
-
-    console.log(`You choosed ${playerSelection}. Computer choosed ${computerSelection}.`);
-
+    
     printMessage(choosedMessageElement, `You choosed ${playerSelection}. Computer choosed ${computerSelection}.`);
 
     if(playerSelection == computerSelection) {
-        console.log(`Draw! ${playerSelection} cant beat ${computerSelection}.`);
-
         printMessage(winnerMessageElement, `Draw! ${playerSelection} cant beat ${computerSelection}.`);
+        printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Rock" && computerSelection == "Paper") {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
         winner = "computer";
-
+        computerScore++;
         printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
+        printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Rock" && computerSelection == "Scissors") {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
         winner = "player";
-
+        playerScore++;
         printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
+        printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Paper" && computerSelection == "Rock") {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
         winner = "player";
-
+        playerScore++;
         printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
+        printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Paper" && computerSelection == "Scissors") {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
         winner = "computer";
-
+        computerScore++;
         printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
+        printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Scissors" && computerSelection == "Rock") {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
         winner = "computer";
-
+        computerScore++;
         printMessage(winnerMessageElement, `You lose! ${computerSelection} beats ${playerSelection}.`);
+        printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
     if(playerSelection == "Scissors" && computerSelection == "Paper") {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
         winner = "player";
-
+        playerScore++;
         printMessage(winnerMessageElement, `You win! ${playerSelection} beats ${computerSelection}.`);
+        printMessage(resultMessageElement, `Player ${playerScore} - ${computerScore} Computer`);
     }
 
-    return winner;
-
-}
-
-function game() {
-
-    let winnerScore = 5;
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for(let i = 0; i < 5; i++) {
-        let playerSelection = playerPlay();
-        let computerSelection = computerPlay();
-
-        let winner = playRound(playerSelection, computerSelection);
-
-        if(winner == "player") playerScore++;
-        if(winner == "computer") computerScore++;
-
-        console.log(`Player ${playerScore} - ${computerScore} Computer`);
+    if(playerScore == winnerScore) {
+        printMessage(finalMessageElement, "You are the winner! Congratulations.");
     }
-    
-
-    if(playerScore == computerScore) console.log("Draw. Maybe you should try again.")
-    if(playerScore > computerScore) console.log("You are the winner! Congratulations.");
-    if(computerScore > playerScore) console.log("You lost. Better luck next time.")
+    if(computerScore == winnerScore) {
+        printMessage(finalMessageElement, "You lost. Better luck next time.");
+    }
 
 }
