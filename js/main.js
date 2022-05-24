@@ -7,6 +7,17 @@ window.onload = function() {
     let rockButton = document.querySelector("#rock");
     let paperButton = document.querySelector("#paper");
     let scissorsButton = document.querySelector("#scissors");
+
+    rockButton.addEventListener("click", () => {
+        playerPlay("Rock");
+    });
+    paperButton.addEventListener("click", () => {
+        playerPlay("Paper");
+    });
+    scissorsButton.addEventListener("click", () => {
+        playerPlay("Scissors");
+    });
+
 }
 
 function computerPlay() {
@@ -33,16 +44,19 @@ function computerPlay() {
     return computerChoice;
 }
 
-function playerPlay() {
+function playerPlay(playerChoice) {
+    
+    if(playerChoice == "Rock") {
+        console.log("ROCK");
+    }
+    if(playerChoice == "Paper") {
+        console.log("PAPER");
+    }
+    if(playerChoice == "Scissors") {
+        console.log("SCISSORS");
+    }
 
-    let playerChoice = prompt("Choose between rock, paper or scissors");
-    playerChoice = playerChoice.toLowerCase() + " ";
-    let playerChoiceNew = playerChoice.charAt(0).toUpperCase() + playerChoice.substring(1, playerChoice.indexOf(" ") + 1);
-    playerChoiceNew = playerChoiceNew.trim();
-
-    // console.log(playerChoiceNew);
-
-    if((playerChoiceNew !== "Rock") && (playerChoiceNew !== "Paper") && (playerChoiceNew !== "Scissors")) {
+    if((playerChoice !== "Rock") && (playerChoice !== "Paper") && (playerChoice !== "Scissors")) {
         console.log("Remember you can choose rock, paper or scissors only!");
     }
 
@@ -50,7 +64,7 @@ function playerPlay() {
     //     console.log("You choosed " + playerChoiceNew);
     // }
 
-    return playerChoiceNew;
+    return playerChoice;
 }
 
 function playRound(playerSelection, computerSelection) {
