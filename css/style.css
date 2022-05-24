@@ -2,3 +2,20 @@
     margin: 0;
     padding: 0;
 }
+#container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+#buttons {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.buttonStyle {
+    width: 30%;
+    padding: 30px 10px;
+}

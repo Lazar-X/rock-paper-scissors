@@ -3,6 +3,10 @@ window.onload = function() {
     console.log("connected");
 
     game();
+
+    let rockButton = document.querySelector("#rock");
+    let paperButton = document.querySelector("#paper");
+    let scissorsButton = document.querySelector("#scissors");
 }
 
 function computerPlay() {
@@ -92,7 +96,6 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
 
-    for(let i = 0; i < 5; i++) {
         let playerSelection = playerPlay();
         let computerSelection = computerPlay();
 
@@ -102,7 +105,6 @@ function game() {
         if(winner == "computer") computerScore++;
 
         console.log(`Player ${playerScore} - ${computerScore} Computer`);
-    }
 
     if(playerScore == computerScore) console.log("Draw. Maybe you should try again.")
     if(playerScore > computerScore) console.log("You are the winner! Congratulations.");
