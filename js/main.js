@@ -2,6 +2,18 @@ window.onload = function() {
 
     console.log("connected");
 
+    let heading = document.querySelector("#heading");
+    let containerButtons = document.querySelector("#containerButtons");
+
+    function showText () {
+        heading.className = "visible";
+        setTimeout(function() {
+            containerButtons.className = "visible";
+        }, 2000);
+    }
+
+    showText();
+
     let rockButton = document.querySelector("#rock");
     let paperButton = document.querySelector("#paper");
     let scissorsButton = document.querySelector("#scissors");
@@ -29,7 +41,7 @@ let resultMessageElement = document.querySelector("#resultMessage");
 let finalMessageElement = document.querySelector("#finalMessage");
 
 function printMessage(element, message) {
-    element.textContent = message;
+        element.textContent = message;
 }
 
 function computerPlay() {
@@ -62,7 +74,14 @@ let mainDiv = document.querySelector("#main");
 finalDiv.setAttribute("style", "display: none;");
 
 function playRound(playerSelection, computerSelection) {
-    
+
+    let result = document.querySelector("#result");
+    let resultChildren = result.getElementsByTagName("p");
+    result.className = "visible";
+    for(let i = 0; i < resultChildren.length; i++) {
+        resultChildren[i].style.color = "black";
+    }
+
     printMessage(choosedMessageElement, `You choosed ${playerSelection}. Computer choosed ${computerSelection}.`);
 
     if(playerSelection == computerSelection) {

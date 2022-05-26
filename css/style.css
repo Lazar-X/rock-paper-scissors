@@ -76,4 +76,12 @@ h1 {
 #result p {
     font-size: 20px;
     padding: 10px;
+    color: white;
+}
+.hidden {
+    opacity: 0;
+}
+.visible {
+    opacity: 1;
+    transition: opacity 1.5s ease-out;
 }
