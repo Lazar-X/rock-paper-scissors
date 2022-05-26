@@ -5,6 +5,11 @@ window.onload = function() {
     let rockButton = document.querySelector("#rock");
     let paperButton = document.querySelector("#paper");
     let scissorsButton = document.querySelector("#scissors");
+    let tryAgainButton = document.querySelector("#tryAgain");
+
+    tryAgainButton.addEventListener("click", () => {
+        window.location.reload();
+    });
 
     rockButton.addEventListener("click", () => {
         playRound("Rock", computerPlay());
@@ -101,7 +106,7 @@ function playRound(playerSelection, computerSelection) {
         printMessage(finalMessageElement, "You are the winner! Congratulations.");
     }
     if(computerScore == winnerScore) {
-        printMessage(finalMessageElement, "You lost. Better luck next time.");
+        printMessage(finalMessageElement, "You lost... Better luck next time.");
         mainDiv.setAttribute("style", "display: none;");
         finalDiv.setAttribute("style", "display: flex;");
     }
